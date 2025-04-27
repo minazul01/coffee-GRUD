@@ -1,16 +1,19 @@
 import { Link, useLoaderData } from "react-router-dom";
 import "./App.css";
 import CoffeeCard from "./CoffeeCard";
+import { useState } from "react";
 
 function App() {
   const data = useLoaderData();
+
+  const [coffee, setCoffee] =useState(data)
 
   return (
     <div>
       <h1 className="text-5xl font-bold text-blue-500 my-5">Update coffee</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {data.map((one) => (
-          <CoffeeCard key={one._id} one={one}></CoffeeCard>
+          <CoffeeCard key={one._id} one={one} coffee={coffee} setCoffee={setCoffee}></CoffeeCard>
         ))}
       </div>
 
