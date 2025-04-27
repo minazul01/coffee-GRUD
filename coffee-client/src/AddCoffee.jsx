@@ -12,7 +12,7 @@ const AddCoffee = () => {
     const details = form.details.value;
     const image = form.image.value;
     const inputData = {name, chef, supplier, teste, category, details,image};
-    console.log(inputData)
+   
     // server site added
     fetch('http://localhost:5000/coffee', {
       method: 'POST',
@@ -147,9 +147,9 @@ const AddCoffee = () => {
           </button>
         </form>
       </section>
-      <Link to="/updatecoffee">
+      <Link to="/">
         <button className="px-6 py-2 border border-[#3B9DF8] bg-primary text-[#fff] hover:bg-secondary hover:text-[#3B9DF8] transition duration-300 rounded my-10 cursor-pointer">
-         move to update coffee
+         move to coffee
         </button>
       </Link>
     </div>

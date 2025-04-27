@@ -10,16 +10,17 @@ import UpdateCoffee from "./UpdateCoffee.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
-    element:<App></App>
+    element:<App></App>,
+    loader: () => fetch('http://localhost:5000/coffee')
   },
   {
     path: "/addcoffee",
     element: <AddCoffee></AddCoffee>
   },
   {
-    path: "/updatecoffee",
+    path: "/updatecoffee/:id",
     element: <UpdateCoffee></UpdateCoffee>,
-    loader: () => fetch('http://localhost:5000/coffee')
+    loader: ({params}) => fetch(`http://localhost:5000/coffee/${params.id}`)  
   }
 ]);
 

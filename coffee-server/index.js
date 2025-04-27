@@ -1,7 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 require('dotenv').config()
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const app = express()
 const port = process.env.PORT || 5000;
 
@@ -28,18 +28,53 @@ async function run() {
     await client.connect();
     const coffeCollection = client.db('coffeeDB').collection('coffee');
 
+    app.get('/coffee/:id', async (req, res) => {
+      const id = req.params.id;
+      const quiry = {_id: new ObjectId(id)};
+      const result = await coffeCollection.findOne(quiry);
+      res.send(result);
+    });
+
     app.get('/coffee', async (req, res) => {
       const coffee = coffeCollection.find();
       const result = await coffee.toArray();
       res.send(result);
-    })
-
+    });
     app.post('/coffee', async (req, res) => {
       const coffeeUser = req.body;
       console.log(coffeeUser)
       const result = await coffeCollection.insertOne(coffeeUser);
       res.send(result)
-    })
+    });
+
+    app.put('/coffee/:id', async (req, res) => {
+      const id = req.params.id;
+      const filter = {_id: new ObjectId(id)};
+      const options = { upsert: true };
+      const updateCoffee = req.body;
+      const coffee = {
+        $set: {
+          image: updateCoffee.image,
+           details: updateCoffee.details,
+            name: updateCoffee.name,
+             teste: updateCoffee.teste,
+              chef: updateCoffee.chef,
+               supplier: updateCoffee.supplier,
+                category: updateCoffee.category
+        }
+      };
+      const result = await coffeCollection.updateOne(filter, coffee, options);
+      res.send(result)
+    });
+
+
+    app.delete('/coffee/:id', async (req, res) => {
+       const id = req.params.id;
+       const quire = {_id: new ObjectId(id)};
+       const result = await coffeCollection.deleteOne(quire);
+      res.send(result);
+    });
+
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
