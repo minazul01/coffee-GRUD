@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 
 const CoffeeCard = ({ one, coffee, setCoffee }) => {
   const { image, details, name, teste, chef, _id } = one;
-
+ 
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -20,15 +20,16 @@ const CoffeeCard = ({ one, coffee, setCoffee }) => {
         })
           .then((res) => res.json())
           .then((data) => {
-          
+           
             if (data.deletedCount > 0) {
               Swal.fire({
                 title: "Deleted!",
                 text: "Your coffee has been deleted.",
                 icon: "success",
               });
-              const reaming = coffee.filter( cof => cof._id !== id);
-              setCoffee(reaming);
+              const remaining = coffee.filter((cof) => cof._id !== id);
+              setCoffee(remaining);
+           
             }
           });
       }
