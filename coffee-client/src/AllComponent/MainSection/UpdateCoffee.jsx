@@ -37,7 +37,7 @@ const UpdateCoffee = () => {
              })
                .then((res) => res.json())
                .then((data) => {
-                 console.log(data);
+             
                  if (data.matchedCount) {
                    Swal.fire({
                      title: "Updated!",

@@ -11,7 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
-0.0: Auth.jsx
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
