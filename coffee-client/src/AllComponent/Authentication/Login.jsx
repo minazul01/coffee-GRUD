@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { authenticaiion } from "./Authentication";
 import { FaGithub } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const { loginEmailPass, signOuter, user, loginGithub } = useContext(authenticaiion);
@@ -47,6 +48,7 @@ const Login = () => {
                   </div>
                   <button className="btn btn-neutral mt-4">Login</button>
                 </fieldset>
+                <Link to="/register"><button className="btn">Register Click</button></Link>
               </form>
               {user ? (
                 <button

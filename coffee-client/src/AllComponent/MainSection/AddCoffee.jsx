@@ -14,7 +14,7 @@ const AddCoffee = () => {
     const inputData = {name, chef, supplier, teste, category, details,image};
    
     // server site added
-    fetch('http://localhost:5000/coffee', {
+    fetch('https://coffee-server-navy.vercel.app/coffee', {
       method: 'POST',
       headers: {
         'content-type' : 'application/json'

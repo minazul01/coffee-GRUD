@@ -19,7 +19,7 @@ function App() {
       <div>
         <h1 className="text-5xl font-bold text-blue-500 my-5">Update coffee</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {coffee.map((one) => (
+          {coffee?.map((one) => (
             <CoffeeCard
               key={one._id}
               one={one}
